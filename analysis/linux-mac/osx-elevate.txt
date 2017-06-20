@@ -1,0 +1,20 @@
+# elevate privs via sudoers
+# be careful not to change file ownership
+on investigator OSX
+open terminal
+mount target with user password
+umount target
+su admin -
+sudo su -
+diskutil list
+diskutil coreStorage unlockVolume 11111111-2222-3333-4444-55555555
+diskutil mount /dev/disk3
+cd /Volumes/${target}/private/etc
+cat sudoers > /tmp/x
+vi /tmp/x and edit final line to look like this
+ALL	ALL = (ALL) NOPASSWD: ALL
+cat /tmp/x > sudoers
+cd /
+diskmount unmount /dev/disk3
+shutdown
+

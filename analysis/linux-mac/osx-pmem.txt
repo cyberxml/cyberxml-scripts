@@ -1,0 +1,16 @@
+# capture volatile memory
+Boot up Target OSX
+login as user
+sudo su -
+cd ~
+attach USB with rekall directory
+cp -r /Volumes/Untitled/rekall ~
+cd rekall
+unzip osxpmem-2.1.post4.zip
+
+sudo osxpmem.app/osxpmem -o mem.aff4
+mv mem.aff4 /Volumes/Untitled
+sudo osxpmem.app/osxpmem -e /dev/pmem -o mem.raw /Volumes/Untitled/mem.aff4
+mv mem.raw 
+
+
